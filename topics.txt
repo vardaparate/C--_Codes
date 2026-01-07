@@ -1,0 +1,243 @@
+1️⃣ **Mandatory vs Optional (RAN-oriented)**
+3️⃣ **Printable checklist (✔ style)**
+4️⃣ **Mapped to real RAN / srsRAN code areas**
+
+Everything is still **list-only, concise, and structured**.
+
+---
+
+# ✅ C++ FOR RAN — MANDATORY vs OPTIONAL CHECKLIST
+
+*(Print this & tick as you go)*
+
+---
+
+## 🟢 LANGUAGE FUNDAMENTALS — **MANDATORY**
+
+* ⬜ Compilation process
+* ⬜ Translation units
+* ⬜ `main()`
+* ⬜ Variables & types
+* ⬜ Control flow
+* ⬜ Loops
+* ⬜ Functions
+* ⬜ Scope & lifetime
+
+📍 **Maps to:**
+`apps/`, `main.cc`, entry points in **srsRAN**
+
+---
+
+## 🟢 CORE LANGUAGE — **MANDATORY**
+
+* ⬜ `struct`
+* ⬜ `enum` / `enum class`
+* ⬜ Arrays (C-style)
+* ⬜ `std::array`
+* ⬜ `const` correctness
+* ⬜ References
+* ⬜ Pointers
+* ⬜ Pointer arithmetic
+
+📍 **Maps to:**
+`include/srsran/ran/`, `phy/support/`, slot & context structs
+
+---
+
+## 🟢 MEMORY & OBJECT MODEL — **MANDATORY**
+
+* ⬜ Stack vs heap
+* ⬜ Object lifetime
+* ⬜ Constructors / destructors
+* ⬜ Copy vs move
+* ⬜ Rule of 5
+* ⬜ RAII
+* ⬜ Alignment (`alignas`)
+
+📍 **Maps to:**
+PHY buffers, scheduler state, HARQ state
+
+---
+
+## 🟢 POINTERS & MEMORY MGMT — **MANDATORY**
+
+* ⬜ Raw pointers
+* ⬜ `const T*` vs `T* const`
+* ⬜ Buffer pointers
+* ⬜ Ownership rules
+* ⬜ Pre-allocation
+* ⬜ Object pools (concept)
+
+⚠️ **Optional but Understand Cost**
+
+* ⬜ `unique_ptr`
+* ⬜ `shared_ptr`
+* ⬜ `weak_ptr`
+
+📍 **Maps to:**
+PHY/MAC buffer passing, zero-copy pipelines
+
+---
+
+## 🟢 CLASSES & OOP — **MANDATORY (LIGHT USE)**
+
+* ⬜ Classes
+* ⬜ Access specifiers
+* ⬜ Composition
+* ⬜ Inheritance (basic)
+* ⬜ Virtual functions
+* ⬜ `override`, `final`
+
+❌ **Optional**
+
+* ⬜ Deep polymorphism
+* ⬜ Complex inheritance trees
+
+📍 **Maps to:**
+`mac/`, `scheduler/`, `phy/upper/`
+
+---
+
+## 🟢 STL — **MANDATORY (MINIMAL)**
+
+* ⬜ `<array>`
+* ⬜ `<vector>` (non-RT paths)
+* ⬜ `<cstdint>`
+* ⬜ `<cstring>`
+* ⬜ `<chrono>`
+* ⬜ `<thread>`
+* ⬜ `<atomic>`
+
+❌ **Optional**
+
+* ⬜ Heavy containers (`map`, `string` in RT)
+
+📍 **Maps to:**
+Config, logging, control-plane code
+
+---
+
+## 🟢 MODERN C++ — **MANDATORY (CONTROLLED)**
+
+* ⬜ `auto` (careful use)
+* ⬜ Move semantics
+* ⬜ `constexpr`
+* ⬜ `noexcept`
+* ⬜ `=delete`, `=default`
+* ⬜ `static_assert`
+
+📍 **Maps to:**
+Compile-time checks, zero-cost abstractions
+
+---
+
+## 🟢 CONCURRENCY & TIMING — **MANDATORY**
+
+* ⬜ `std::thread`
+* ⬜ Thread lifecycle
+* ⬜ `std::mutex`
+* ⬜ `std::atomic`
+* ⬜ Producer–consumer
+* ⬜ `std::chrono`
+* ⬜ CPU affinity (Linux)
+
+📍 **Maps to:**
+PHY workers, scheduler threads, RX/TX paths
+
+---
+
+## 🟢 LOW-LEVEL / SYSTEMS — **MANDATORY**
+
+* ⬜ Bitwise operations
+* ⬜ Endianness
+* ⬜ Fixed-width integers
+* ⬜ Memory layout
+* ⬜ Padding & packing
+
+📍 **Maps to:**
+FAPI, PHY–MAC messages, hardware interfaces
+
+---
+
+## 🟢 PERFORMANCE C++ — **MANDATORY**
+
+* ⬜ Avoid heap in hot path
+* ⬜ Cache locality
+* ⬜ False sharing
+* ⬜ Data-oriented design
+* ⬜ Zero-copy design
+* ⬜ Hot vs cold paths
+
+📍 **Maps to:**
+Slot loop, LDPC timing, scheduler deadlines
+
+---
+
+## 🟢 DEBUGGING & TOOLING — **MANDATORY**
+
+* ⬜ Compiler warnings
+* ⬜ Optimization levels
+* ⬜ Debug symbols
+* ⬜ `gdb`
+* ⬜ Assertions
+* ⬜ Logging design
+* ⬜ `perf` basics
+
+📍 **Maps to:**
+Timing bugs, CRC failures, random PHY issues
+
+---
+
+## 🟢 BUILD SYSTEM — CMAKE — **MANDATORY**
+
+* ⬜ CMake basics
+* ⬜ `CMakeLists.txt`
+* ⬜ `add_executable`
+* ⬜ `add_library`
+* ⬜ Include directories
+* ⬜ Linking
+* ⬜ Compile options
+* ⬜ Build types
+* ⬜ Out-of-source builds
+* ⬜ Multi-module projects
+
+📍 **Maps to:**
+Top-level build, PHY/MAC libs, split builds
+
+---
+
+## 🟢 REAL-TIME DISCIPLINE — **MANDATORY**
+
+* ⬜ Deterministic execution
+* ⬜ Bounded latency
+* ⬜ No allocation in slot loop
+* ⬜ Explicit ownership
+* ⬜ Predictable control flow
+
+📍 **Maps to:**
+Everything that runs every slot
+
+---
+
+## 🟢 OPTIONAL / ADVANCED (ONLY IF NEEDED)
+
+* ⬜ Templates (advanced)
+* ⬜ Metaprogramming
+* ⬜ Coroutines
+* ⬜ Async futures
+* ⬜ Reflection
+* ⬜ Heavy functional patterns
+
+🚫 **Not used in RAN hot paths**
+
+---
+
+# 🧠 FINAL RAN MENTAL MODEL
+
+```
+Mandatory = runs every slot
+Optional  = runs at init / control plane
+Avoid     = unpredictable or alloc-heavy
+```
+
+---
